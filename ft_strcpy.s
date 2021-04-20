@@ -18,3 +18,7 @@ loop:
 	jne loop
 end:
 	ret
+
+; idea to make it faster: call ft_strlen, store result, compare to 8, if
+; smaller of equal to, run qword loop, copying 8 bytes at a time, inc index by 8
+; and decrementing len by 8
