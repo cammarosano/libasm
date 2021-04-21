@@ -9,8 +9,8 @@ int	main(void)
 	char	*ret;
 	size_t len;
  	
-	str = "amor";
-	str2 = "amor";
+	str = "abcde";
+	str2 = "abcdfg";
 	len = ft_strlen(str);
 	printf("ft_strlen returned: %lu\n", len);
 	ret = ft_strcpy(copy, str);

@@ -4,17 +4,19 @@ section .text
 ft_strcmp:
 	xor rax, rax	; initialize rax and rdx to 0
 	xor rdx, rdx
-	mov rcx, -1		; index
+	mov rcx, 0		; index
 loop:
-	inc rcx
 	mov al, [rdi + rcx]	; rdi holds 1st arg, s1
 	mov dl, [rsi + rcx]	; rsi holds 2nd arg, s2
-	; test if both are zero
-	mov r8b, al
-	or r8b, dl			; results zero if both chars are '\0'
-	jz end
+	cmp al, dl			; compare the 2 bytes
+	jne end				; if different, jump to end
 	
-	sub eax, edx
-	jz loop
+	or al, dl			; test if both are zero
+	jz end				; if so, jump to end
+
+	inc rcx				; increment counter and restart loop
+	jmp loop
+
 end:
+	sub eax, edx
 	ret
