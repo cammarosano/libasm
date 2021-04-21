@@ -37,6 +37,18 @@ int	main(void)
 	printf("ft_read returned: %d\n", ret_int);
 	ft_write(1, copy, ret_int);
 
+	// testing ft_strdup
+	errno = 0;
+	char *str3 = ft_strdup(str2);
+	if (errno)
+	{
+		errv = errno;
+		perror(NULL);
+	}
+	printf("ft_strdup returned: %s\n", str3);
+
+
+
 
 	return (0);
 }
