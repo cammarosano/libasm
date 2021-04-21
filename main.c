@@ -18,10 +18,25 @@ int	main(void)
 	ret = ft_strcpy(copy, str);
 	printf("ft_strcpy returned: %s\n", ret);
 	printf("ft_strcmp returned: %d\n", ft_strcmp(str, str2));
-	int ret_int = ft_write(8, str2, 3);
-	errv = errno;
+	errno = 0;
+	int ret_int = ft_write(1, str2, 3);
+	if (errno)
+	{
+		errv = errno;
+		perror(NULL);
+
+	}
 	printf("ft_write returned: %d\n", ret_int);
-	perror(NULL);
+	errno = 0;
+	ret_int = ft_read(3, copy, 20);
+	if (errno)
+	{
+		errv = errno;
+		perror(NULL);
+	}
+	printf("ft_read returned: %d\n", ret_int);
+	ft_write(1, copy, ret_int);
+
 
 	return (0);
 }
