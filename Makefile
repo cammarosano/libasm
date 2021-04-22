@@ -6,7 +6,7 @@
 #    By: rcammaro <rcammaro@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/22 13:46:21 by rcammaro          #+#    #+#              #
-#    Updated: 2021/04/22 15:14:28 by rcammaro         ###   ########.fr        #
+#    Updated: 2021/04/22 23:46:31 by rcammaro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ SRC_DEMO = demo.c
 OBJ_DEMO = demo.o
 HEADER = libasm.h
 DEMO = demo
-CC = clang
 CFLAGS = -Wall -Wextra -Werror
 
 all:		$(NAME) $(DEMO)
@@ -30,7 +29,7 @@ $(NAME):	$(OBJ)
 			nasm -felf64 $< -o $@ 
 
 $(DEMO):	$(NAME) $(OBJ_DEMO)
-			$(CC) $(CFLAGS) $(OBJ_DEMO) -lasm -L. -o $@
+			$(CC) $(CFLAGS) $(OBJ_DEMO) -lasm -L. -o $@ 
 
 %.o:		%.c $(HEADER)
 			$(CC) $(CFLAGS) -c $< -o $@
