@@ -2,23 +2,19 @@ global ft_strcpy
 
 section .text
 ft_strcpy:
-	mov rax, rdi	; rdi holds the 1st arg: char *dest. Store it in rax
-
-	cmp rax, 0		; protection againg NULL pointers
+	; protection againg NULL pointers
+	cmp rdi, 0			; rdi : 1st arg (char *dest)
 	je end
-	cmp rsi, 0		; rsi holds the 2nd arg: const char *src
+	cmp rsi, 0			; rsi : 2nd arg (const char *src)
 	je end
 
-	mov rcx, 0		; index
+	mov rax, rdi		; Store dest in rax
+	mov rcx, 0			; index
 loop:
-	mov dl, [rsi + rcx]	; rsi holds the 2nd arg: const char *src
-	mov [rax + rcx], dl ; dl has size of 1 byte
+	mov dl, [rsi + rcx]	; dl is a byte size (sub)register, used as buffer
+	mov [rax + rcx], dl ; 
 	inc rcx				; increment index
-	cmp dl, 0
+	cmp dl, 0			; rerun loop unless copied byte was '\0'
 	jne loop
 end:
 	ret
-
-; idea to make it faster: call ft_strlen, store result, compare to 8, if
-; smaller of equal to, run qword loop, copying 8 bytes at a time, inc index by 8
-; and decrementing len by 8
