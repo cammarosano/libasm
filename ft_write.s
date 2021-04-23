@@ -13,7 +13,9 @@ error:
 	; set errno global variable to -rax
 	neg rax					; invert sign
 	push rax				; preserve it
+	sub rsp, 8				; align stack to 16-Bytes boundary 
 	call __errno_location 	; returns pointer to errno
+	add rsp, 8				; recover stack
 	pop rdi
 	mov [rax], edi			; errno is an int
 	mov rax, -1				; return value in case of error is -1
